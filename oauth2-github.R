@@ -14,8 +14,9 @@ require(jsonlite)
         ## Use any URL for the homepage URL
         #    (http://github.com is fine) and  http://localhost:1410 as the callback url. You will need httpuv
           
-        #
-        #    Replace your key and secret below.
+        ##
+        ##    Replace your key and secret below.
+        ##    Secret keys can be get from developer github
         myapp <- oauth_app("github",
                            key = "7cd28c82639b7cf76fcc",
                            secret = "d1c90e32e12baa81dabec79cd1ea7d8edfd6bf53")
@@ -26,16 +27,16 @@ require(jsonlite)
         
         # 4. Use API
         gtoken <- config(token = github_token)
-        req <- GET("https://api.github.com/users/jtleek/repos", gtoken)
+        req <- GET("https://api.github.com/users/ppant/repos", gtoken)
         stop_for_status(req)
         ##content(req)
         output <- content(req)
-         ## Either of the two can be used to fetch the required info, name and date created 
-        out<-list(output[[8]]$name, output[[8]]$created_at)
+         ## Either of the two can be used to fetch the required info, name and date created of repo ProgrammingAssignment3
+        out<-list(output[[30]]$name, output[[30]]$created_at)
         
-        BROWSE("https://api.github.com/users/jtleek/repos",authenticate("Access Token","x-oauth-basic","basic"))
+        BROWSE("https://api.github.com/users/ppant/repos",authenticate("Access Token","x-oauth-basic","basic"))
         # OR:
-        # req <- with_config(gtoken, GET("https://api.github.com/users/jtleek/repos"))
-        # stop_for_status(req)
-        # content(req)
+        req <- with_config(gtoken, GET("https://api.github.com/users/ppant/repos"))
+        stop_for_status(req)
+        content(req)
         
